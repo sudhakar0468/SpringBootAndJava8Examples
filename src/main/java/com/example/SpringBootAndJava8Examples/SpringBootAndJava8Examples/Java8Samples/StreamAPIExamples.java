@@ -1,9 +1,6 @@
 package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Java8Samples;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,6 +32,18 @@ public class StreamAPIExamples {
         empObj.add(emp4);
 
         System.out.println("Sortd by ID :::"+empObj.stream().sorted(Comparator.comparing(Emp::getId)).collect(Collectors.toList()));
+
+        System.out.println("Sortd by Name :::"+empObj.stream().sorted(Comparator.comparing(Emp::getName)).collect(Collectors.toList()));
+
+
+        Map<String,String> mapObj=new HashMap<>();
+        mapObj.put("1","sudhakar");
+        mapObj.put("2","test");
+        mapObj.put("3","apple");
+        mapObj.put("4","box");
+
+        System.out.println("Get Values from Map sorted by value ::"+mapObj.entrySet().stream().map(one->one.getValue()).sorted().collect(Collectors.toList()));
+        System.out.println("Get Values from Map sorted by value :: "+mapObj.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).map(one->one.getValue()).collect(Collectors.toList()));
 
     }
 
