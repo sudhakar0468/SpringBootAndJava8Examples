@@ -1,9 +1,6 @@
 package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Java8Samples;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,6 +18,11 @@ public class StreamAPIExamples {
 
         System.out.println("max value  in List :::"+listObj.stream().max((a,b)->a.compareTo(b)).get());
 
+        System.out.println("List max value :: "+listObj.stream().mapToInt(one->one).summaryStatistics().getMax());
+        System.out.println("List min value :: "+listObj.stream().mapToInt(one->one).summaryStatistics().getMin());
+        System.out.println("List avg value :: "+listObj.stream().mapToInt(one->one).summaryStatistics().getAverage());
+        System.out.println("List count value :: "+listObj.stream().mapToInt(one->one).summaryStatistics().getCount());
+
         System.out.println("reverse order  in List :::"+listObj.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
         Emp emp1=new Emp(2,"zzz",10);
@@ -35,6 +37,38 @@ public class StreamAPIExamples {
         empObj.add(emp4);
 
         System.out.println("Sortd by ID :::"+empObj.stream().sorted(Comparator.comparing(Emp::getId)).collect(Collectors.toList()));
+
+        System.out.println("Sortd by Name :::"+empObj.stream().sorted(Comparator.comparing(Emp::getName)).collect(Collectors.toList()));
+
+
+        Map<String,String> mapObj=new HashMap<>();
+        mapObj.put("1","sudhakar");
+        mapObj.put("2","test");
+        mapObj.put("3","apple");
+        mapObj.put("4","box");
+
+        System.out.println("Get Values from Map sorted by value ::"+mapObj.entrySet().stream().map(one->one.getValue()).sorted().collect(Collectors.toList()));
+        System.out.println("Get Values from Map sorted by value :: "+mapObj.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).map(one->one.getValue()).collect(Collectors.toList()));
+
+        String dataString="I am Java Developer ";
+
+        System.out.println("Count of each variable ::"+Stream.of(dataString.split("")).collect(Collectors.groupingBy(Function.identity(),Collectors.counting())));
+
+        // may 28
+
+        List<Student> studentList =new ArrayList<>();
+
+        studentList.add(new Student(2,"sudhaka",31,"male"));
+        studentList.add(new Student(1,"zzzzz",32,"male"));
+        studentList.add(new Student(3,"aaaaaa",32,"female"));
+        studentList.add(new Student(4,"cccccc",33,"female"));
+        studentList.add(new Student(5,"dddddd",33,"female"));
+
+        System.out.println("Sorted by Age And Name ::"+studentList.stream().sorted(Comparator.comparing(Student::getAge).thenComparing(Comparator.comparing(Student::getName))).collect(Collectors.toList()));
+        System.out.println("Sorted by Name And Age ::"+studentList.stream().sorted(Comparator.comparing(Student::getName).thenComparing(Comparator.comparing(Student::getAge))).collect(Collectors.toList()));
+
+        System.out.println("Avg by gender ::"+studentList.stream().collect(Collectors.groupingBy(Student::getGender,Collectors.averagingInt(Student::getAge))));
+
 
     }
 
