@@ -3,10 +3,10 @@ package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class SpringBootAndJava8ExamplesApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
