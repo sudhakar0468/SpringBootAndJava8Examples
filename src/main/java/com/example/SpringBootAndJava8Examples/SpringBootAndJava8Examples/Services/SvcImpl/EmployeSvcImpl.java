@@ -1,7 +1,7 @@
 package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Services.SvcImpl;
 
-import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity.Employe;
-import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Repo.EmployeRepository;
+import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity.Employe.Employe;
+import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Repo.Employe.EmployeRepository;
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Services.Svc.EmployeSvc;
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

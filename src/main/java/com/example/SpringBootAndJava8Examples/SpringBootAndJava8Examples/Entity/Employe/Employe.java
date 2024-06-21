@@ -1,4 +1,4 @@
-package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity;
+package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity.Employe;
 
 import jakarta.persistence.*;
 

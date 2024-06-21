@@ -1,6 +1,6 @@
 package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Services.Svc;
 
-import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity.Employe;
+import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity.Employe.Employe;
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.exceptions.ResourceNotFoundException;
 
 import java.util.List;
