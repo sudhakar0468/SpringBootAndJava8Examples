@@ -3,6 +3,7 @@ package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Servic
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity.Device.Device;
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Repo.SecondDatabseRepo.DevicesRepository;
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Services.Svc.DeviceSvc;
+import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,8 @@ public class DeviceSvcImpl implements DeviceSvc {
     }
 
     @Override
-    public Device getDeviceById(Integer id) {
-        return devicesRepository.findById(id).get();
+    public Device getDeviceById(Integer id) throws ResourceNotFoundException {
+        return devicesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Device not found for this id ::"+id));
     }
 
     @Override

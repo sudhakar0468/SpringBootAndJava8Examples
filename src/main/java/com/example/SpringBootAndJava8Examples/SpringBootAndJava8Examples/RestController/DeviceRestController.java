@@ -2,6 +2,7 @@ package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.RestCo
 
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity.Device.Device;
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Services.Svc.DeviceSvc;
+import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class DeviceRestController {
     }
 
     @GetMapping(value = "/getDevics/{id}", produces = "application/json")
-    public ResponseEntity<?> getDevice(@PathVariable final Integer id) {
+    public ResponseEntity<?> getDevice(@PathVariable final Integer id) throws ResourceNotFoundException {
         Device device = deviceSvc.getDeviceById(id);
         return new ResponseEntity<>(device, HttpStatus.OK);
     }
@@ -37,7 +38,7 @@ public class DeviceRestController {
 
 
     @DeleteMapping(value = "/deleteDevics", produces = "application/json")
-    public ResponseEntity<?> deleteDevice(@PathVariable Integer id) {
+    public ResponseEntity<?> deleteDevice(@PathVariable Integer id) throws ResourceNotFoundException {
 
         Device device = deviceSvc.getDeviceById(id);
         deviceSvc.delete(device);

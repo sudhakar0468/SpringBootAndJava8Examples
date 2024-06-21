@@ -1,6 +1,7 @@
 package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Services.Svc;
 
 import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Entity.Device.Device;
+import com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ void DeleteByID(final Integer Id);
 
 void delete(final Device device);
 
-Device getDeviceById(final Integer id);
+Device getDeviceById(final Integer id) throws ResourceNotFoundException;
 
 List<Device> getAllDevice();
 
