@@ -11,3 +11,5 @@ class SpringBootAndJava8ExamplesApplicationTests {
 	}
 
 }
+
+// comment
