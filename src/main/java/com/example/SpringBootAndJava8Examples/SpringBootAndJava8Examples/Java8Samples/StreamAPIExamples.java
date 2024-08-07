@@ -1,14 +1,9 @@
 package com.example.SpringBootAndJava8Examples.SpringBootAndJava8Examples.Java8Samples;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.Map;
-import java.util.HashMap;
 
 public class StreamAPIExamples {
 
@@ -68,11 +63,39 @@ public class StreamAPIExamples {
         studentList.add(new Student(3,"aaaaaa",32,"female"));
         studentList.add(new Student(4,"cccccc",33,"female"));
         studentList.add(new Student(5,"dddddd",33,"female"));
+        studentList.add(new Student(6,"dddddd",17,"female"));
+        studentList.add(new Student(7,"zzzzz123",15,"male"));
 
         System.out.println("Sorted by Age And Name ::"+studentList.stream().sorted(Comparator.comparing(Student::getAge).thenComparing(Comparator.comparing(Student::getName))).collect(Collectors.toList()));
         System.out.println("Sorted by Name And Age ::"+studentList.stream().sorted(Comparator.comparing(Student::getName).thenComparing(Comparator.comparing(Student::getAge))).collect(Collectors.toList()));
 
         System.out.println("Avg by gender ::"+studentList.stream().collect(Collectors.groupingBy(Student::getGender,Collectors.averagingInt(Student::getAge))));
+
+
+        System.out.println("Result like key is ID and Value are MAP Obj :"+studentList.stream().collect(Collectors.toMap(one->one.getId(),One->One)));
+
+        // Accumulate in to TreeSet Obj as Result
+        System.out.println("Result like Treeset  Obj :"+studentList.stream().map(Student::getAge).collect(Collectors.toCollection(TreeSet::new)));
+
+        // Convert elements to strings and concatenate them, separated by commas
+        System.out.println("Result in String with Kama(,)  Obj :"+studentList.stream().map(Student::getAge).map(Object::toString).collect(Collectors.joining(",")));
+
+        // Compute sum of age of employee
+        System.out.println("Result in SUM of Age  Obj :"+studentList.stream().collect(Collectors.summingInt(Student::getAge)));
+        // (OR)
+        System.out.println("Result in SUM of Age  Obj :"+ (Integer) studentList.stream().mapToInt(Student::getAge).sum());
+
+        // group by AGE
+        System.out.println("Result in Group By Age  Obj :"+studentList.stream().collect(Collectors.groupingBy(Student::getAge)));
+
+
+
+        // Compute sum of ages by gender
+        System.out.println("Result in Group By Age  Obj :"+studentList.stream().collect(Collectors.groupingBy(Student::getGender,Collectors.summingInt(Student::getAge))));
+
+        // Partition students into passing and failing
+        System.out.println("Result in Group By Age  Obj :"+studentList.stream().collect(Collectors.partitioningBy(one->one.getAge() >=18)));
+
 
     }
 
